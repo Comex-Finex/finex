@@ -202,7 +202,6 @@
   .socials svg{width:14px;height:14px}
 
   /* ---------- responsive ---------- */
-  <style>
 @media (max-width:1000px) {
   .cards6 { grid-template-columns:repeat(3,1fr); }
   .steps { grid-template-columns:repeat(3,1fr); gap:24px 0; }
@@ -309,25 +308,27 @@
     font-size:26px;
   }
 
+  .hero-bg { width:100%; }
   .hero-bg > img:first-child {
-  width:100% !important;
-  max-width:none !important;
-  right:-30% !important;
-  top:0 !important;
-  opacity:.5 !important;
-  z-index:1 !important;
-}
-
-  .hero-bg > img:nth-child(2) {
-  width:34% !important;
-  max-width:none !important;
-  right:1% !important;
-  bottom:0 !important;
-  top:auto !important;
-  opacity:1 !important;
-  z-index:2 !important;
-}
+    width:125% !important;
+    max-width:none !important;
+    right:-28% !important;
+    top:0 !important;
+    opacity:.42 !important;
+    z-index:1 !important;
   }
+  .hero-bg > img:nth-child(2) {
+    width:54% !important;
+    max-width:none !important;
+    right:-2% !important;
+    bottom:0 !important;
+    top:auto !important;
+    opacity:1 !important;
+    z-index:2 !important;
+  }
+  .hero .wrap { padding-top:54px; padding-bottom:48px; }
+  .hero-grid { gap:24px; }
+  .hero-side { max-width:100%; }
 }
 
 @media (max-width:560px) {
@@ -428,6 +429,7 @@
       <a href="#servicios">Servicios</a>
       <a href="#importar">Importar</a>
       <a href="#exportar">Exportar</a>
+      <a href="simulador.html">Simulador de importación</a>
       <a class="menu-cta" href="https://wa.me/5491168386978" target="_blank" rel="noopener">Cotizar operación →</a>
     </nav>
     <div class="nav-right">
@@ -582,6 +584,7 @@
         <div class="eyebrow-y">Del producto al mercado</div>
         <h2><span>Traé productos.</span><span>Abrí mercados. Escalá.</span></h2>
         <p>No todas las operaciones internacionales empiezan con un container completo. Muchas empiezan con una idea.</p>
+        <a href="simulador.html" class="btn btn-y" style="margin-top:22px">Calculá tu importación →</a>
       </div>
     </div>
     <div class="steps">
