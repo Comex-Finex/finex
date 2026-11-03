@@ -41,6 +41,10 @@
 
   /* ---------- logos ---------- */
   .logo-img{height:44px;width:auto;display:block;object-fit:contain}
+  .brand-logo-wrap{display:inline-flex;align-items:center;justify-content:center;background:#fff;padding:5px 9px;border-radius:5px;box-shadow:0 3px 16px rgba(0,0,0,.18)}
+  .brand-logo-wrap .logo-img{height:44px;width:auto}
+  .brand-logo-wrap.hero-brand .logo-img{height:54px}
+  .brand-logo-wrap.cta-brand .logo-img{height:58px}
   .logo-img.sm{height:30px}
   .logo-img.lg{height:58px}
 
@@ -72,7 +76,7 @@
   .hero-bg::after{content:"";position:absolute;inset:0;z-index:3;
     background:linear-gradient(90deg,rgba(12,35,64,1) 0%,rgba(12,35,64,.98) 18%,rgba(12,35,64,.35) 55%,rgba(12,35,64,.55) 100%)}
   .hero .wrap{position:relative;z-index:4;width:100%;padding-top:70px;padding-bottom:70px}
-  .hero-grid{display:grid;grid-template-columns:1fr 210px;gap:40px;align-items:center}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:34px;align-items:center}
   .hero h1{font-size:46px;font-weight:800;margin:18px 0 20px;max-width:560px}
   .hero h1 em{font-style:normal;color:var(--teal)}
   br.brm{display:none}
@@ -81,10 +85,11 @@
   .hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px;font-size:12px;color:#93A8BF}
   .hero-tags span::after{content:"·";margin-left:10px}
   .hero-tags span:last-child::after{content:""}
-  .hero-side{text-align:right;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B9C9DA;font-weight:600}
-  .hero-side .hs-list span{display:block}
-  .hero-side .quote{margin-top:26px;padding-top:18px;border-top:2px solid var(--yellow);font-size:13px;letter-spacing:0;text-transform:none;color:#DCE7F2;font-weight:400;font-style:italic}
-  .hero-side .mark{margin-top:34px}
+  .hero-side{text-align:left;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#F0F5FA;font-weight:700}
+  .hero-side .hs-list{display:grid;gap:10px}
+  .hero-side .hs-list span{display:block;background:rgba(255,255,255,.09);border-left:3px solid var(--teal);padding:10px 12px;font-size:12px;line-height:1.35;letter-spacing:.07em;text-shadow:0 1px 8px rgba(0,0,0,.25)}
+  .hero-side .quote{margin-top:18px;padding-top:14px;border-top:2px solid var(--yellow);font-size:14px;letter-spacing:0;text-transform:none;color:#F2F6FA;font-weight:500;font-style:italic;line-height:1.5}
+  .hero-side .mark{margin-top:22px}
   .hero-side .mark b{display:block;color:#fff;font-size:26px;font-weight:800;letter-spacing:.02em}
   .hero-side .mark span{display:block;color:var(--teal);font-size:8px;letter-spacing:.3em;margin-top:3px}
 
@@ -382,25 +387,20 @@
   }
 
   .hero-side .hs-list {
-    display:flex;
-    flex-wrap:nowrap;
-    align-items:center;
-    justify-content:flex-start;
-    gap:0 6px;
-    font-size:clamp(8px,2.4vw,11px);
-    letter-spacing:.03em;
-    white-space:nowrap;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+    max-width:340px;
   }
 
   .hero-side .hs-list span {
-    display:inline;
+    display:block;
+    white-space:normal;
+    font-size:11px;
+    padding:9px 11px;
   }
 
-  .hero-side .hs-list span + span::before {
-    content:"•";
-    margin-right:6px;
-    color:var(--yellow);
-  }
+  .hero-side .mark { margin-top:18px; }
 
   .hero-ctas {
     flex-wrap:nowrap;
@@ -423,7 +423,7 @@
 <!-- ============ HEADER ============ -->
 <header>
   <div class="wrap nav">
-    <a href="#inicio"><img class="logo-img" src="logo-finex-blanco.png" alt="FINEX Global Trade"></a>
+    <a href="#inicio" class="brand-logo-wrap"><img class="logo-img" src="LOGO%20FINEX.png" alt="FINEX Global Trade"></a>
     <nav class="menu">
       <a href="#inicio">Inicio</a>
       <a href="#servicios">Servicios</a>
@@ -470,15 +470,15 @@
       </div>
       <div class="hero-side">
   <div class="hs-list">
-    <span>PRODUCTOS</span>
-    <span>MERCADOS</span>
-    <span>SOLUCIONES<br class="brd"> SIN FRONTERAS</span>
+    <span>PROVEEDORES Y PRODUCTOS</span>
+    <span>IMPORTACIONES Y EXPORTACIONES</span>
+    <span>LOGÍSTICA INTERNACIONAL</span>
   </div>
 
-  <div class="quote">“El mundo también puede ser tu mercado.”</div>
+  <div class="quote">“Conectamos tu negocio con oportunidades en todo el mundo.”</div>
 
   <div class="mark">
-    <img class="logo-img lg" src="logo-finex-blanco.png" alt="FINEX Global Trade" style="margin-left:auto">
+    <span class="brand-logo-wrap hero-brand"><img class="logo-img lg" src="LOGO%20FINEX.png" alt="FINEX Global Trade"></span>
   </div>
 </div>
     </div>
@@ -684,7 +684,7 @@
       </a>
     </div>
     <div class="cta-right">
-      <div class="mark"><img class="logo-img lg" src="logo-finex-blanco.png" alt="FINEX Global Trade" style="margin-left:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,.35))"></div>
+      <div class="mark"><span class="brand-logo-wrap cta-brand"><img class="logo-img lg" src="LOGO%20FINEX.png" alt="FINEX Global Trade"></span></div>
       <p>Conectamos negocios.<br>Cruzamos fronteras.</p>
     </div>
   </div>
