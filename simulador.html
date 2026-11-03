@@ -28,6 +28,8 @@ main{padding:42px 0 64px}.layout{display:grid;grid-template-columns:minmax(0,1.3
 <h2>Datos de tu operación</h2><p class="hint">Completá los campos en dólares estadounidenses. Los porcentajes son editables.</p>
 <div class="section-label">1. Mercadería y logística internacional</div>
 <div class="fields">
+<div class="field"><label for="product">Producto</label><div class="control"><input id="product" type="text" placeholder="Ej.: luminarias LED"></div></div>
+<div class="field"><label for="origin">País de origen</label><div class="control"><input id="origin" type="text" placeholder="Ej.: China"></div></div>
 <div class="field"><label for="fob">Valor FOB total</label><div class="control"><span>USD</span><input id="fob" type="number" min="0" step="0.01" value="10000"></div><small>Valor de la mercadería en origen.</small></div>
 <div class="field"><label for="freight">Flete internacional</label><div class="control"><span>USD</span><input id="freight" type="number" min="0" step="0.01" value="1500"></div></div>
 <div class="field"><label for="insurance">Seguro internacional</label><div class="control"><span>USD</span><input id="insurance" type="number" min="0" step="0.01" value="100"></div></div>
@@ -94,7 +96,8 @@ function calculate(){
  const fx=num('fx');
  el('arsBox').hidden=!(fx>0);
  if(fx>0)el('arsOut').textContent='ARS '+(total*fx).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
- const summary='Hola FINEX, hice una simulación de importación y quisiera revisar mi operación. FOB: '+money(fob)+', flete: '+money(freight)+', seguro: '+money(insurance)+', CIF: '+money(cif)+', desembolso estimado: '+money(total)+', unidades: '+units+'. ¿Podemos analizar los costos y requisitos?';
+ const product=el('product').value.trim(),origin=el('origin').value.trim();
+ const summary='Hola FINEX, hice una simulación de importación y quisiera revisar mi operación. Producto: '+(product||'A definir')+', origen: '+(origin||'A definir')+'. FOB: '+money(fob)+', flete: '+money(freight)+', seguro: '+money(insurance)+', CIF: '+money(cif)+', desembolso estimado: '+money(total)+', unidades: '+units+'. ¿Podemos analizar los costos y requisitos?';
  el('whatsapp').href='https://wa.me/5491168386978?text='+encodeURIComponent(summary);
 }
 ids.forEach(id=>el(id).addEventListener('input',calculate));
