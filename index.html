@@ -444,6 +444,24 @@
     gap:6px;
   }
 }
+
+  /* En celulares verticales, reservar un espacio propio para la foto
+     debajo del contenido y evitar que se superponga con el texto. */
+  @media (max-width:560px) and (orientation:portrait) {
+    .hero .wrap {
+      padding-bottom:230px !important;
+    }
+    .hero-bg > img:nth-child(2) {
+      width:44% !important;
+      max-width:none !important;
+      right:0 !important;
+      bottom:0 !important;
+      top:auto !important;
+      opacity:.90 !important;
+      z-index:4 !important;
+    }
+  }
+
 </style>
 </head>
 <body>
