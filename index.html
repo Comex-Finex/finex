@@ -50,9 +50,11 @@
     border-radius:0;
     box-shadow:none;
   }
-  /* Logo del encabezado: caja blanca más compacta y marca más grande */
-  .header-brand{padding:0;background:transparent;border-radius:0;box-shadow:none}
-  .header-brand .logo-img{height:68px;width:auto;filter:brightness(0) invert(1)}
+  /* Marca compuesta del encabezado: emblema original + wordmark blanco */
+  .header-brand{padding:0;background:transparent;border-radius:0;box-shadow:none;gap:8px;justify-content:flex-start}
+  .header-symbol-crop{display:block;position:relative;flex:none;width:53px;height:58px;overflow:hidden}
+  .header-symbol-crop img{display:block;position:absolute;left:0;top:0;width:auto;max-width:none;height:58px;object-fit:contain}
+  .header-wordmark{display:block;flex:none;width:auto;height:50px;max-width:none;object-fit:contain}
   .brand-logo-wrap .logo-img{height:44px;width:auto}
   .brand-logo-wrap.hero-brand .logo-img{height:54px}
   .brand-logo-wrap.cta-brand .logo-img{height:58px}
@@ -232,6 +234,9 @@
 }
 
 @media (max-width:820px) {
+  .header-symbol-crop{width:48px;height:52px}
+  .header-symbol-crop img{height:52px}
+  .header-wordmark{height:45px}
   .menu,
   .nav-right .btn {
     display:none;
@@ -353,6 +358,10 @@
 }
 
 @media (max-width:560px) {
+  .header-brand{gap:6px}
+  .header-symbol-crop{width:43px;height:47px}
+  .header-symbol-crop img{height:47px}
+  .header-wordmark{height:40px}
   .cards6,
   .cards4,
   .steps,
@@ -439,7 +448,10 @@
 <!-- ============ HEADER ============ -->
 <header>
   <div class="wrap nav">
-    <a href="#inicio" class="brand-logo-wrap header-brand"><img class="logo-img" src="LOGO%20FINEX.png" alt="FINEX Global Trade"></a>
+    <a href="#inicio" class="brand-logo-wrap header-brand" aria-label="FINEX Global Trade">
+      <span class="header-symbol-crop"><img src="LOGO%20FINEX.png" alt=""></span>
+      <img class="header-wordmark" src="logo-finex-blanco.png" alt="FINEX Global Trade">
+    </a>
     <nav class="menu">
       <a href="#inicio">Inicio</a>
       <a href="#servicios">Servicios</a>
