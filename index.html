@@ -100,6 +100,8 @@
   br.brm{display:none}
   .hero p.lead{font-size:16px;color:#CBD8E6;max-width:470px;margin-bottom:30px}
   .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-simulator-link{display:inline-flex;margin-top:18px;color:#D8E7F4;font-size:13px;font-weight:700;border-bottom:1px solid var(--yellow);padding-bottom:3px;transition:.2s}
+  .hero-simulator-link:hover{color:var(--teal)}
   .hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px;font-size:12px;color:#93A8BF}
   .hero-tags span::after{content:"·";margin-left:10px}
   .hero-tags span:last-child::after{content:""}
@@ -349,7 +351,7 @@
     right:-2% !important;
     bottom:0 !important;
     top:auto !important;
-    opacity:1 !important;
+    opacity:.90 !important;
     z-index:4 !important;
   }
   .hero .wrap { z-index:5; padding-top:54px; padding-bottom:48px; }
@@ -487,12 +489,13 @@
     <div class="hero-grid">
       <div>
         <p class="eyebrow" style="color:#9FB4CA">Comercio internacional<br>para un mundo de oportunidades</p>
-        <h1>Tu próximo <br class="brm">mercado <br class="brm">puede estar <br class="brm">del otro lado <br class="brm"><em>de una frontera.</em></h1>
-        <p class="lead">Conectamos productos, proveedores y negocios con nuevas oportunidades internacionales.</p>
+        <h1>Importá productos a Argentina, <em>de principio a fin.</em></h1>
+        <p class="lead">Buscamos proveedores, analizamos costos y coordinamos la logística y la gestión de importación hasta la entrega de tu mercadería.</p>
         <div class="hero-ctas">
           <a href="#importar" class="btn btn-y">Quiero importar →</a>
           <a href="#exportar" class="btn btn-o">Quiero exportar →</a>
         </div>
+        <a class="hero-simulator-link" href="simulador.html">¿Querés estimar cuánto te costaría importar? Probá el simulador →</a>
         <div class="hero-tags">
           <span>Importación</span><span>Exportación</span><span>Sourcing</span><span>Gestión integral</span>
         </div>
