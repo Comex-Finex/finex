@@ -30,7 +30,8 @@ main{padding:42px 0 64px}.layout{display:grid;grid-template-columns:minmax(0,1.3
 <div class="fields">
 <div class="field"><label for="product">Producto</label><div class="control"><input id="product" type="text" placeholder="Ej.: luminarias LED"></div></div>
 <div class="field"><label for="origin">País de origen</label><div class="control"><input id="origin" type="text" placeholder="Ej.: China"></div></div>
-<div class="field"><label for="fob">Valor FOB total</label><div class="control"><span>USD</span><input id="fob" type="number" min="0" step="0.01" value="10000"></div><small>Valor de la mercadería en origen.</small></div>
+<div class="field"><label for="unitPrice">Precio unitario FOB</label><div class="control"><span>USD</span><input id="unitPrice" type="number" min="0" step="0.01" value="100"></div><small>Precio de compra por cada unidad en origen.</small></div>
+<div class="field"><label for="fobTotal">Valor FOB total calculado</label><div class="control"><span>USD</span><output id="fobTotal" style="display:block;width:100%;padding:11px 10px;font-size:14px;font-weight:700">10.000,00</output></div><small>Precio unitario multiplicado por cantidad.</small></div>
 <div class="field"><label for="freight">Flete internacional</label><div class="control"><span>USD</span><input id="freight" type="number" min="0" step="0.01" value="1500"></div></div>
 <div class="field"><label for="insurance">Seguro internacional</label><div class="control"><span>USD</span><input id="insurance" type="number" min="0" step="0.01" value="100"></div></div>
 <div class="field"><label for="units">Cantidad de unidades</label><div class="control"><span>UN.</span><input id="units" type="number" min="1" step="1" value="100"></div></div>
@@ -74,36 +75,43 @@ main{padding:42px 0 64px}.layout{display:grid;grid-template-columns:minmax(0,1.3
 <footer class="footer"><div class="wrap"><span>FINEX Global Trade · Comercio internacional</span><a href="index.html">www.finex.ar</a></div></footer>
 <script>
 (function(){
-const ids=['fob','freight','insurance','units','duty','stat','vat','vatExtra','income','gross','local','fx'];
-const defaults={fob:10000,freight:1500,insurance:100,units:100,duty:16,stat:3,vat:21,vatExtra:0,income:0,gross:0,local:800,fx:0};
-const el=id=>document.getElementById(id);
-const num=id=>Math.max(0,Number(el(id).value)||0);
-const money=value=>'USD '+value.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
-function calculate(){
- const fob=num('fob'),freight=num('freight'),insurance=num('insurance'),units=Math.max(1,num('units'));
- const cif=fob+freight+insurance;
- const duty=cif*num('duty')/100,stat=cif*num('stat')/100;
- const base=cif+duty+stat;
- const vat=base*num('vat')/100,vatExtra=base*num('vatExtra')/100;
- const income=base*num('income')/100,gross=base*num('gross')/100;
- const local=num('local'),total=cif+duty+stat+vat+vatExtra+income+gross+local;
- el('grandTotal').textContent=money(total);
- el('unitCost').textContent='Costo estimado por unidad: '+money(total/units);
- el('cifOut').textContent=money(cif);el('dutyOut').textContent=money(duty+stat);
- el('vatOut').textContent=money(vat);el('vatExtraOut').textContent=money(vatExtra);
- el('incomeOut').textContent=money(income);el('grossOut').textContent=money(gross);
- el('localOut').textContent=money(local);el('totalOut').textContent=money(total);
- const fx=num('fx');
- el('arsBox').hidden=!(fx>0);
- if(fx>0)el('arsOut').textContent='ARS '+(total*fx).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
- const product=el('product').value.trim(),origin=el('origin').value.trim();
- const summary='Hola FINEX, hice una simulación de importación y quisiera revisar mi operación. Producto: '+(product||'A definir')+', origen: '+(origin||'A definir')+'. FOB: '+money(fob)+', flete: '+money(freight)+', seguro: '+money(insurance)+', CIF: '+money(cif)+', desembolso estimado: '+money(total)+', unidades: '+units+'. ¿Podemos analizar los costos y requisitos?';
- el('whatsapp').href='https://wa.me/5491168386978?text='+encodeURIComponent(summary);
+function init(){
+ const ids=['unitPrice','freight','insurance','units','duty','stat','vat','vatExtra','income','gross','local','fx'];
+ const defaults={unitPrice:100,freight:1500,insurance:100,units:100,duty:16,stat:3,vat:21,vatExtra:0,income:0,gross:0,local:800,fx:0};
+ const el=id=>document.getElementById(id);
+ const num=id=>{const node=el(id);return node?Math.max(0,Number(node.value)||0):0;};
+ const money=value=>'USD '+(Number.isFinite(value)?value:0).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
+ function calculate(){
+  const units=Math.max(1,Math.floor(num('units')));
+  const unitPrice=num('unitPrice');
+  const fob=unitPrice*units;
+  const freight=num('freight'),insurance=num('insurance');
+  const cif=fob+freight+insurance;
+  const duty=cif*num('duty')/100,stat=cif*num('stat')/100;
+  const base=cif+duty+stat;
+  const vat=base*num('vat')/100,vatExtra=base*num('vatExtra')/100;
+  const income=base*num('income')/100,gross=base*num('gross')/100;
+  const local=num('local'),total=cif+duty+stat+vat+vatExtra+income+gross+local;
+  el('fobTotal').textContent=fob.toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
+  el('grandTotal').textContent=money(total);
+  el('unitCost').textContent='Puesto en Argentina por unidad: '+money(total/units);
+  el('cifOut').textContent=money(cif);el('dutyOut').textContent=money(duty+stat);
+  el('vatOut').textContent=money(vat);el('vatExtraOut').textContent=money(vatExtra);
+  el('incomeOut').textContent=money(income);el('grossOut').textContent=money(gross);
+  el('localOut').textContent=money(local);el('totalOut').textContent=money(total);
+  const fx=num('fx');
+  el('arsBox').hidden=!(fx>0);
+  if(fx>0)el('arsOut').textContent='ARS '+(total*fx).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const product=el('product').value.trim(),origin=el('origin').value.trim();
+  const summary='Hola FINEX, hice una simulación de importación y quisiera revisar mi operación. Producto: '+(product||'A definir')+', origen: '+(origin||'A definir')+'. Precio unitario FOB: '+money(unitPrice)+', cantidad: '+units+', FOB total: '+money(fob)+', flete: '+money(freight)+', seguro: '+money(insurance)+', CIF: '+money(cif)+', desembolso estimado: '+money(total)+', puesto en Argentina por unidad: '+money(total/units)+'. ¿Podemos analizar los costos y requisitos?';
+  el('whatsapp').href='https://wa.me/5491168386978?text='+encodeURIComponent(summary);
+ }
+ ids.forEach(id=>{const node=el(id);if(node)node.addEventListener('input',calculate);});
+ el('calculate').addEventListener('click',function(event){event.preventDefault();calculate();});
+ el('reset').addEventListener('click',function(event){event.preventDefault();ids.forEach(id=>{el(id).value=defaults[id];});calculate();});
+ calculate();
 }
-ids.forEach(id=>el(id).addEventListener('input',calculate));
-el('calculate').addEventListener('click',calculate);
-el('reset').addEventListener('click',()=>{ids.forEach(id=>el(id).value=defaults[id]);calculate()});
-calculate();
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init,{once:true});}else{init();}
 })();
 </script>
 </body>
