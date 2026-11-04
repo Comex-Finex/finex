@@ -56,6 +56,11 @@
   .brand-logo-wrap .logo-img{height:44px;width:auto}
   .brand-logo-wrap.hero-brand .logo-img{height:54px}
   .brand-logo-wrap.cta-brand .logo-img{height:58px}
+  /* En el cierre, el wordmark se muestra en blanco sobre el fondo oscuro */
+  .brand-logo-wrap.cta-brand .logo-img{filter:brightness(0) invert(1)}
+  @media (min-width:821px){
+    .hero-side{transform:translateX(14px)}
+  }
   .logo-img.sm{height:30px}
   .logo-img.lg{height:58px}
 
