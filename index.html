@@ -120,7 +120,8 @@
   .stat:last-child{border-right:0}
   .stat .ic{width:30px;height:30px;flex:none;color:var(--navy)}
   .stat b{display:block;font-size:22px;font-weight:800;color:var(--navy);line-height:1.2}
-  .stat small{font-size:12px;color:var(--muted)}
+  .stat small{font-size:12px;color:var(--muted);line-height:1.4;display:block}
+  .stats-note{text-align:center;color:var(--muted);font-size:10px;line-height:1.5;padding:0 20px 16px;margin:0}
 
   /* ---------- intro ---------- */
   .intro{background:#F7FAFC;padding:64px 0}
@@ -454,7 +455,7 @@
       <span class="header-symbol-crop"><img src="LOGO%20FINEX.png" alt=""></span>
       <img class="header-wordmark" src="logo-finex-blanco.png" alt="FINEX Global Trade">
     </a>
-    <nav class="menu">
+    <nav class="menu" id="main-menu" aria-label="Navegación principal">
       <a href="#inicio">Inicio</a>
       <a href="#servicios">Servicios</a>
       <a href="#importar">Importar</a>
@@ -464,7 +465,7 @@
     </nav>
     <div class="nav-right">
       <a href="https://wa.me/5491168386978" target="_blank" rel="noopener" class="btn btn-y">Cotizar operación</a>
-      <button class="burger" id="burger" aria-label="Menú" aria-expanded="false">☰</button>
+      <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-controls="main-menu" aria-expanded="false">☰</button>
     </div>
   </div>
 </header>
@@ -518,26 +519,27 @@
 </section>
 
 <!-- ============ MÉTRICAS ============ -->
-<section class="stats">
+<section class="stats" aria-label="Experiencia y capacidades de FINEX">
   <div class="wrap">
     <div class="stats-grid">
       <div class="stat">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15 0 18M12 3c-2.5 2.6-2.5 15 0 18"/></svg>
-        <div><b>+15</b><small>Países con operaciones</small></div>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div><b>12+</b><small>Años de experiencia profesional en comercio exterior</small></div>
       </div>
       <div class="stat">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg>
-        <div><b>+500</b><small>Operaciones gestionadas</small></div>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="m7.5 12.5 3 3 6-7"/></svg>
+        <div><b>100%</b><small>Operaciones gestionadas exitosamente*</small></div>
       </div>
       <div class="stat">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 19c.6-3.3 3.3-5 6.5-5s5.9 1.7 6.5 5"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 14.2c3 .2 4.8 1.9 5.4 4.8"/></svg>
-        <div><b>+200</b><small>Empresas que confían</small></div>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18v13H3zM7 7V4h10v3M3 12h18"/></svg>
+        <div><b>Integral</b><small>Desde la búsqueda del proveedor hasta la entrega</small></div>
       </div>
       <div class="stat">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8-5.3-2.8-5.3 2.8 1-5.8L3.5 9.7l5.9-.9L12 3.5z"/></svg>
-        <div><b>98%</b><small>Operaciones exitosas</small></div>
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h13v10H2zM15 11h4l3 3v4h-7z"/><circle cx="7" cy="19" r="1.7"/><circle cx="18" cy="19" r="1.7"/></svg>
+        <div><b>Multimodal</b><small>Alternativas aéreas, marítimas y terrestres</small></div>
       </div>
     </div>
+    <p class="stats-note">*El 100% corresponde a las operaciones que gestioné hasta la fecha. Es un registro de experiencia pasada, no una garantía de resultados futuros.</p>
   </div>
 </section>
 
@@ -729,13 +731,11 @@
       <img class="logo-img sm" src="LOGO%20FINEX.png" alt="FINEX Global Trade">
       <p>Comercio internacional para un mundo de oportunidades.</p>
     </div>
-    <nav class="foot-nav">
-      <a href="#inicio">Inicio</a><a href="#servicios">Servicios</a><a href="#nosotros">Nosotros</a><a href="#recursos">Recursos</a><a href="https://wa.me/5491168386978" target="_blank" rel="noopener">Contacto</a>
+    <nav class="foot-nav" aria-label="Navegación del pie de página">
+      <a href="#inicio">Inicio</a><a href="#servicios">Servicios</a><a href="#importar">Importar</a><a href="#exportar">Exportar</a><a href="simulador.html">Simulador</a><a href="https://wa.me/5491168386978" target="_blank" rel="noopener">Contacto</a>
     </nav>
-    <div class="socials">
-      <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.9 20H3.6V9h3.3v11zM5.2 7.6A1.9 1.9 0 116.9 5.7 1.9 1.9 0 015.2 7.6zM20.4 20H17v-5.4c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V20H9.8V9H13v1.5a3.6 3.6 0 013.2-1.8c3.4 0 4.1 2.3 4.1 5.2V20z"/></svg></a>
+    <div class="socials" aria-label="Redes sociales">
       <a href="https://www.instagram.com/finex_ar/" target="_blank" rel="noopener" aria-label="Instagram FINEX"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg></a>
-      <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.6 2.6 0 00-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4a2.6 2.6 0 00-1.8 1.8A27 27 0 002 12a27 27 0 00.4 4.8 2.6 2.6 0 001.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.6 2.6 0 001.8-1.8A27 27 0 0022 12a27 27 0 00-.4-4.8zM10 15V9l5.2 3z"/></svg></a>
     </div>
   </div>
 </footer>
@@ -747,12 +747,14 @@
     b.addEventListener('click',function(){
       var open=document.body.classList.toggle('nav-open');
       b.setAttribute('aria-expanded',open);
+      b.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');
       b.textContent=open?'✕':'☰';
     });
     document.querySelectorAll('.menu a').forEach(function(a){
       a.addEventListener('click',function(){
         document.body.classList.remove('nav-open');
         b.setAttribute('aria-expanded','false');
+        b.setAttribute('aria-label','Abrir menú');
         b.textContent='☰';
       });
     });
